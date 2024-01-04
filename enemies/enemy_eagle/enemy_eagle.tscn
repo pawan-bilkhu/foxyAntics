@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://bjqrmlbwdxm8u"]
+
+[ext_resource type="PackedScene" uid="uid://2xuill1f0qio" path="res://enemies/enemy_base/enemy_base.tscn" id="1_owltl"]
+[ext_resource type="Script" path="res://enemies/enemy_eagle/enemy_eagle.gd" id="2_e4b3c"]
+[ext_resource type="Texture2D" uid="uid://dnts1igtv2qkr" path="res://assets/enemies/eagle/eagle-attack.png" id="3_yfjv2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k12pa"]
+atlas = ExtResource("3_yfjv2")
+region = Rect2(0, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4xse"]
+atlas = ExtResource("3_yfjv2")
+region = Rect2(40, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbkjb"]
+atlas = ExtResource("3_yfjv2")
+region = Rect2(80, 0, 40, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12njd"]
+atlas = ExtResource("3_yfjv2")
+region = Rect2(120, 0, 40, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3hc8g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k12pa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4xse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbkjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12njd")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ijx85"]
+radius = 6.0
+
+[node name="EnemyEagle" instance=ExtResource("1_owltl")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_e4b3c")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_3hc8g")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_ijx85")
+
+[node name="PlayerDetector" type="RayCast2D" parent="." index="3"]
+target_position = Vector2(0, 200)
+
+[node name="MoveTimer" type="Timer" parent="." index="4"]
+wait_time = 3.0
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
