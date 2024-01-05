@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 
-
+@onready var shooter = $Shooter
 @onready var sound_player = $SoundPlayer
 @onready var debug_label = $DebugLabel
 @onready var sprite_2d = $Sprite2D
@@ -33,7 +33,10 @@ func _physics_process(delta):
 	move_and_slide()
 	calculate_states()
 	update_debug_label()
-
+	
+	
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
 func update_debug_label() -> void:
 	debug_label.text = "OnFloor: %s \nPlayerState: %s \nVelocity: %.0f, %.0f " % [
@@ -42,6 +45,13 @@ func update_debug_label() -> void:
 		velocity.x,
 		velocity.y,
 	]
+
+
+func shoot() -> void:
+	if sprite_2d.flip_h:
+		shooter.shoot(Vector2.LEFT)
+	else:
+		shooter.shoot(Vector2.RIGHT)
 
 
 func get_input() -> void:
@@ -94,3 +104,7 @@ func set_state(new_state: PLAYER_STATE) -> void:
 		PLAYER_STATE.FALL:
 			animation_player.play("fall")
 	
+
+
+func _on_hit_box_area_entered(area):
+	print("Player Hit: ", area)

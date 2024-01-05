@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://ceqbpv1fmv1op"]
+[gd_scene load_steps=13 format=3 uid="uid://ceqbpv1fmv1op"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_otm3g"]
 [ext_resource type="Texture2D" uid="uid://cuvdelmaoydwr" path="res://assets/player/player.png" id="1_ulacw"]
+[ext_resource type="PackedScene" uid="uid://hur45g52xpv5" path="res://shooter/shooter.tscn" id="3_i365u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ong8q"]
 size = Vector2(10, 18)
@@ -115,7 +116,12 @@ _data = {
 "run": SubResource("Animation_omaam")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lktgr"]
+radius = 6.0
+height = 18.0
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 0
 script = ExtResource("1_otm3g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -145,3 +151,17 @@ asdf
 asdf"
 
 [node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_lktgr")
+
+[node name="Shooter" parent="." instance=ExtResource("3_i365u")]
+speed = 200.0
+shoot_interval = 1.0
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

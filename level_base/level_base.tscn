@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ttdf8q7183mm" path="res://player_camera/player_camera.tscn" id="2_4u5xa"]
 [ext_resource type="PackedScene" uid="uid://ceqbpv1fmv1op" path="res://player/player.tscn" id="3_m3tgr"]
 [ext_resource type="PackedScene" uid="uid://bjqrmlbwdxm8u" path="res://enemies/enemy_eagle/enemy_eagle.tscn" id="5_n42ge"]
-[ext_resource type="PackedScene" uid="uid://c1pod24bepwld" path="res://enemies/enemy_frog/enemy_frog.tscn" id="6_pmqys"]
+[ext_resource type="PackedScene" uid="uid://cuvukg0gnvr86" path="res://enemies/enemy_snail/enemy_snail.tscn" id="7_1bnmk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w4nol"]
 texture = ExtResource("1_kq3v0")
@@ -525,6 +525,7 @@ texture = ExtResource("1_kq3v0")
 
 [sub_resource type="TileSet" id="TileSet_m46yg"]
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_w4nol")
 
 [node name="LevelBase" type="Node2D"]
@@ -539,11 +540,11 @@ layer_0/tile_data = PackedInt32Array(-2, 458752, 0, -1, 458752, 0, -65536, 45875
 position = Vector2(355, -148)
 zoom = Vector2(2, 2)
 
+[node name="EnemySnail" parent="." instance=ExtResource("7_1bnmk")]
+position = Vector2(469, -28)
+
 [node name="Player" parent="." instance=ExtResource("3_m3tgr")]
-position = Vector2(282, -145)
+position = Vector2(349, -35)
 
 [node name="EnemyEagle" parent="." instance=ExtResource("5_n42ge")]
-position = Vector2(568, -322)
-
-[node name="EnemyFrog" parent="." instance=ExtResource("6_pmqys")]
-position = Vector2(378, -133)
+position = Vector2(378, -214)
