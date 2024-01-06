@@ -39,7 +39,8 @@ func remove() -> void:
 	
 	_is_dead = true
 	SignalManager.on_enemy_hit.emit(points, global_position)
-	ObjectGenerator.create_explosion(global_position)
+	ObjectGenerator.create_simple_scene(global_position, ObjectGenerator.SCENE_KEY.EXPLOSION)
+	ObjectGenerator.create_simple_scene(global_position, ObjectGenerator.SCENE_KEY.FRUIT_PICK_UP)
 	set_physics_process(false)
 	hide()
 	queue_free()
