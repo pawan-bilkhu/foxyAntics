@@ -9,34 +9,6 @@ size = Vector2(20, 55)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r73oc"]
 size = Vector2(9, 122)
 
-[sub_resource type="Animation" id="Animation_m1kuq"]
-resource_name = "arrive"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VisualElements/Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.01, 0.01), Vector2(0.2, 0.2), Vector2(0.5, 0.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VisualElements/Sprite2D:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_q8jpc"]
 length = 0.001
 tracks/0/type = "value"
@@ -76,20 +48,32 @@ tracks/2/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_6eng0"]
-resource_name = "pulse"
-length = 3.0
+[sub_resource type="Animation" id="Animation_m1kuq"]
+resource_name = "arrive"
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VisualElements:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath("VisualElements/Sprite2D:scale")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -150), Vector2(0, 0), Vector2(0, -150), Vector2(0, 0), Vector2(0, -150), Vector2(0, 0)]
+"values": [Vector2(0.01, 0.01), Vector2(0.2, 0.2), Vector2(0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualElements/Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_dhvl4"]
@@ -122,6 +106,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0.796078, 0, 0.780392, 1), Color(1, 1, 1, 1), Color(0.796078, 0, 0.780392, 1), Color(1, 1, 1, 1), Color(0.796078, 0, 0.780392, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_invincibility"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_qwd2k"]
@@ -162,6 +160,22 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6eng0"]
+resource_name = "pulse"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualElements:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -150), Vector2(0, 0), Vector2(0, -150), Vector2(0, 0), Vector2(0, -150), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iidb7"]
@@ -236,7 +250,7 @@ states/initial_position/position = Vector2(123, 100)
 states/pulse/node = SubResource("AnimationNodeAnimation_pik33")
 states/pulse/position = Vector2(579, -1)
 transitions = ["Start", "initial_position", SubResource("AnimationNodeStateMachineTransition_chiv5"), "initial_position", "arrive", SubResource("AnimationNodeStateMachineTransition_deaxg"), "arrive", "pulse", SubResource("AnimationNodeStateMachineTransition_l0mqk"), "pulse", "attack", SubResource("AnimationNodeStateMachineTransition_7gbds"), "attack", "pulse", SubResource("AnimationNodeStateMachineTransition_x32vw"), "pulse", "hit", SubResource("AnimationNodeStateMachineTransition_2q8t6"), "attack", "hit", SubResource("AnimationNodeStateMachineTransition_365ju"), "hit", "pulse", SubResource("AnimationNodeStateMachineTransition_om4k3")]
-graph_offset = Vector2(-586, -64)
+graph_offset = Vector2(206.6, -29.1025)
 
 [node name="Boss" type="Node2D"]
 script = ExtResource("1_5hfvg")
@@ -248,11 +262,11 @@ position = Vector2(0, -35)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_s3l8q")
 
-[node name="Area2D" type="Area2D" parent="VisualElements"]
+[node name="HitBox" type="Area2D" parent="VisualElements"]
 collision_layer = 4
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VisualElements/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisualElements/HitBox"]
 position = Vector2(-2, -37.5)
 shape = SubResource("RectangleShape2D_uywtu")
 
@@ -280,4 +294,5 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/on_hit = false
 parameters/conditions/on_trigger = false
 
+[connection signal="area_entered" from="VisualElements/HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="area_entered" from="Trigger" to="." method="_on_trigger_area_entered"]
